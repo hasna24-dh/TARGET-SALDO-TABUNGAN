@@ -1,0 +1,74 @@
+/*
+
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+*/
+package latihan;
+import java.util.Scanner;
+/**
+*
+
+@author LENOVO
+
+NAMA: Hasna Durrotul Hikmah
+
+KELAS: PBO1
+
+NIM: 23176022
+
+PRODI: Sistem Informasi
+
+SEMESTER: 3
+
+Deskripsi Program: TARGET SALDO TABUNGAN
+*/
+public class latihan20 {
+
+private double saldo;
+private double bungaPerBulan;
+private double saldoTarget;
+
+// Konstruktor
+public latihan20(double saldoAwal, double bungaPerBulan, double saldoTarget) {
+this.saldo = saldoAwal;
+this.bungaPerBulan = bungaPerBulan / 100; // Konversi dari persen ke desimal
+this.saldoTarget = saldoTarget;
+}
+
+// Method untuk menghitung saldo per bulan hingga mencapai target
+public void hitungSaldo() {
+int bulan = 0;
+while (saldo < saldoTarget) {
+bulan++;
+saldo += saldo * bungaPerBulan;
+System.out.printf("Saldo di bulan ke-%d: Rp. %,.0f\n", bulan, saldo);
+}
+}
+
+public static void main(String[] args) {
+try (Scanner scanner = new Scanner(System.in)) {
+double saldoAwal, bungaPerBulan, saldoTarget;
+
+     // Meminta input dari pengguna dengan validasi
+     do {
+         System.out.print("Masukkan saldo awal (harus lebih besar dari 0): ");
+         saldoAwal = scanner.nextDouble();
+     } while (saldoAwal <= 0);
+
+     do {
+         System.out.print("Masukkan bunga per bulan (%) (harus lebih besar dari 0): ");
+         bungaPerBulan = scanner.nextDouble();
+     } while (bungaPerBulan <= 0);
+
+     do {
+         System.out.print("Masukkan saldo target (harus lebih besar dari saldo awal): ");
+         saldoTarget = scanner.nextDouble();
+     } while (saldoTarget <= saldoAwal);
+
+     // Membuat objek Latihan20 dan menjalankan perhitungan
+     latihan20 tabungan = new latihan20(saldoAwal, bungaPerBulan, saldoTarget);
+     tabungan.hitungSaldo();
+ }
+}
+
+}
